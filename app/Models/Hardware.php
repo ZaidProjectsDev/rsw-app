@@ -8,4 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Hardware extends Model
 {
     use HasFactory;
+
+    protected $fillable = [ 'name', 'vendorId','specs'
+    ];
 }
