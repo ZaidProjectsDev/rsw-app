@@ -2,24 +2,22 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * @property string $name
- * @property string $hardwareId
- * @property string $description
- * @property int    $gameId
- * @property int    $created_at
- * @property int    $updated_at
+ * @property int $created_at
+ * @property int $updated_at
  */
-class Submission extends Model
+class GameUser extends Model
 {
+    use HasFactory;
     /**
      * The database table used by the model.
      *
      * @var string
      */
-    protected $table = 'submissions';
+    protected $table = 'game_user';
 
     /**
      * The primary key for the model.
@@ -34,7 +32,7 @@ class Submission extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'gameId', 'hardwareId', 'description', 'created_at', 'updated_at'
+        'game_id', 'user_id', 'created_at', 'updated_at'
     ];
 
     /**
@@ -52,7 +50,7 @@ class Submission extends Model
      * @var array
      */
     protected $casts = [
-        'name' => 'string', 'gameId' => 'int', 'hardwareId' => 'string', 'description' => 'string', 'created_at' => 'timestamp', 'updated_at' => 'timestamp'
+        'created_at' => 'timestamp', 'updated_at' => 'timestamp'
     ];
 
     /**

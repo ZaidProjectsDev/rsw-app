@@ -1,25 +1,26 @@
 <?php
 
 namespace App\Models;
-
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-
+use Illuminate\Database\Eloquent\Factories\GameFactory;
 /**
- * @property string $name
- * @property string $hardwareId
- * @property string $description
- * @property int    $gameId
+ * @property string $title
+ * @property string $publisher
+ * @property string $developer
+ * @property Date   $release_date
  * @property int    $created_at
  * @property int    $updated_at
  */
-class Submission extends Model
+class Game extends Model
 {
+    use HasFactory;
     /**
      * The database table used by the model.
      *
      * @var string
      */
-    protected $table = 'submissions';
+    protected $table = 'games';
 
     /**
      * The primary key for the model.
@@ -34,7 +35,7 @@ class Submission extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'gameId', 'hardwareId', 'description', 'created_at', 'updated_at'
+        'title', 'release_date', 'publisher', 'developer', 'created_at', 'updated_at'
     ];
 
     /**
@@ -52,7 +53,7 @@ class Submission extends Model
      * @var array
      */
     protected $casts = [
-        'name' => 'string', 'gameId' => 'int', 'hardwareId' => 'string', 'description' => 'string', 'created_at' => 'timestamp', 'updated_at' => 'timestamp'
+        'title' => 'string', 'release_date' => 'date', 'publisher' => 'string', 'developer' => 'string', 'created_at' => 'timestamp', 'updated_at' => 'timestamp'
     ];
 
     /**
@@ -61,7 +62,7 @@ class Submission extends Model
      * @var array
      */
     protected $dates = [
-        'created_at', 'updated_at'
+        'release_date', 'created_at', 'updated_at'
     ];
 
     /**
@@ -75,5 +76,9 @@ class Submission extends Model
 
     // Functions ...
 
-    // Relations ...
+    // Relations ..
+    public function users()
+    {
+        $this->belongsToMany(User::class);
+    }
 }

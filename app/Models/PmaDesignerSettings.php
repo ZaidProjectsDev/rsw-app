@@ -5,28 +5,24 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * @property string $name
- * @property string $hardwareId
- * @property string $description
- * @property int    $gameId
- * @property int    $created_at
- * @property int    $updated_at
+ * @property string $username
+ * @property string $settings_data
  */
-class Submission extends Model
+class PmaDesignerSettings extends Model
 {
     /**
      * The database table used by the model.
      *
      * @var string
      */
-    protected $table = 'submissions';
+    protected $table = 'pma__designer_settings';
 
     /**
      * The primary key for the model.
      *
      * @var string
      */
-    protected $primaryKey = 'id';
+    protected $primaryKey = 'username';
 
     /**
      * Attributes that should be mass-assignable.
@@ -34,7 +30,7 @@ class Submission extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'gameId', 'hardwareId', 'description', 'created_at', 'updated_at'
+        'settings_data'
     ];
 
     /**
@@ -43,7 +39,7 @@ class Submission extends Model
      * @var array
      */
     protected $hidden = [
-
+        
     ];
 
     /**
@@ -52,7 +48,7 @@ class Submission extends Model
      * @var array
      */
     protected $casts = [
-        'name' => 'string', 'gameId' => 'int', 'hardwareId' => 'string', 'description' => 'string', 'created_at' => 'timestamp', 'updated_at' => 'timestamp'
+        'username' => 'string', 'settings_data' => 'string'
     ];
 
     /**
@@ -61,7 +57,7 @@ class Submission extends Model
      * @var array
      */
     protected $dates = [
-        'created_at', 'updated_at'
+        
     ];
 
     /**
