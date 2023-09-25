@@ -14,10 +14,16 @@ return new class extends Migration
         Schema::create('hardware_parts', function (Blueprint $table) {
             $table->id();
             $table->string('name', 255);
-            $table->integer('hardware_type')->nullable(false);
-            $table->string('vendor',255)->nullable(false);
+            $table->unsignedBigInteger('hardware_type_id')->index();
+            $table->unsignedBigInteger('vendor_id')->index();
+            $table->foreign('hardware_type_id')->references('id')->on('hardware_types');
+            $table->foreign('vendor_id')->references('id')->on('vendors');
+
             $table->timestamps();
         });
+
+
+        //Foreign key link from users and games to create table foundation.
     }
 
     /**

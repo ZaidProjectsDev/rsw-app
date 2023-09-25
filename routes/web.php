@@ -17,3 +17,9 @@ Route::get('/', function () {
     return view('home');
 });
 
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::resource('hardwareparts', \App\Http\Controllers\HardwarePartController::class);
+Route::get('/hardwareparts',[\App\Http\Controllers\HardwarePartController::class,'index']);

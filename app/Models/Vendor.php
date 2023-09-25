@@ -5,29 +5,17 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-/**
- * @property string $name
- * @property int $vendor_id
- * @property int    $hardware_type_id
- * @property int    $created_at
- * @property int    $updated_at
- */
-class HardwarePart extends Model
+class Vendor extends Model
 {
     use HasFactory;
-    /**
-     * The database table used by the model.
-     *
-     * @var string
-     */
-    protected $table = 'hardware_parts';
-
-    /**
-     * The primary key for the model.
-     *
-     * @var string
-     */
     protected $primaryKey = 'id';
+
+    //relations
+    public function hardwareParts()
+    {
+        $this->belongsToMany(HardwarePart::class);
+    }
+
 
     /**
      * Attributes that should be mass-assignable.
@@ -35,7 +23,7 @@ class HardwarePart extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'hardware_type_id', 'vendor_id', 'created_at', 'updated_at'
+        'name', 'created_at', 'updated_at'
     ];
 
     /**
@@ -53,7 +41,7 @@ class HardwarePart extends Model
      * @var array
      */
     protected $casts = [
-        'name' => 'string', 'hardware_type_id' => 'int', 'vendor_id' => 'int', 'created_at' => 'timestamp', 'updated_at' => 'timestamp'
+        'created_at' => 'timestamp', 'updated_at' => 'timestamp'
     ];
 
     /**
@@ -77,12 +65,4 @@ class HardwarePart extends Model
     // Functions ...
 
     // Relations ...
-    public function vendor()
-    {
-        return $this->belongsTo(Vendor::class);
-    }
-    public function hardwareType()
-    {
-        return $this->belongsTo(HardwareType::class);
-    }
 }

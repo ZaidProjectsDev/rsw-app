@@ -28,8 +28,8 @@ final class HardwarePartFactory extends Factory
     {
         return [
             'name' => fake()->name,
-            'hardware_type' => fake()->randomNumber(),
-            'vendor' => fake()->word,
+            'hardware_type_id' => fake()->randomNumber(),
+            'vendor_id' => fake()->word,
         ];
     }
 }
