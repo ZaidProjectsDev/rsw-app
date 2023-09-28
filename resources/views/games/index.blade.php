@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@extends('layouts.gameheader');
+
 @section('content')
     <div class="container">
         <div class="row justify-content-center">
@@ -13,25 +13,16 @@
                                 {{ session('status') }}
                             </div>
                         @endif
-                        <?
-                        ?>
-                        @forelse($parts as $part)
+                        @forelse($games as $game)
                             <div class="col-md-6 col-xl-4 card w-auto">
-                                    <h2>{{ $part->name}}
-                                    </h2>
-                                    <h3>Vendor:
-                                        <span>{{ $part->vendor->name}}</span>
-                                    </h3>
-                                    <h3>Hardware Type:
-                                    <span>{{$part->hardwareType->name}}</span>
-                                    </h3>
-                                </div>
+                                <h2>{{ $game->title}}</h2>
+                            </div>
 
-                            @empty
+                        @empty
                             <div class="col-md-6 col-xl-4 card w-auto">
                                 <span>There's nothing to see here. </span>
                             </div>
-                            @endforelse
+                        @endforelse
                     </div>
                 </div>
             </div>

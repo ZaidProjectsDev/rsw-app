@@ -1,22 +1,15 @@
 <?php
 
 namespace App\Http\Controllers;
-
-use App\Models\HardwarePart;
-use App\Models\HardwareType;
+use App\Models\Game;
 use Illuminate\Http\Request;
 
-class HardwarePartController extends Controller
+class GameController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-     $parts = HardwarePart::all();
-
-     return view('hardwareparts.index', compact('parts'));
-        //
+        $games = Game::all();
+        return view('games.index', compact('games'));
     }
 
     /**
@@ -40,10 +33,8 @@ class HardwarePartController extends Controller
      */
     public function show(string $id)
     {
-
-        $parts = HardwarePart::findMany($id);
-        return view('hardwareparts.index', compact('parts'));
-        //
+        $games = Game::findMany($id);
+        return view('games.index', compact('games'));
     }
 
     /**

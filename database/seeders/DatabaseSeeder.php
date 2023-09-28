@@ -14,9 +14,11 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+        /*
         \App\Models\Game::factory(10)->create();
         \App\Models\User::factory(4)->create();
         \App\Models\GameUser::factory(5)->create();
+        */
         \App\Models\Vendor::factory()->create(['name'=> 'Intel']);
         \App\Models\Vendor::factory()->create(['name'=> 'Nvidia']);
         \App\Models\Vendor::factory()->create(['name'=> 'AMD']);
@@ -36,6 +38,24 @@ class DatabaseSeeder extends Seeder
         \App\Models\HardwarePart::factory()->create(['name'=> 'EVGA RTX 2070 8GB', 'hardware_type_id' => '2', 'vendor_id' => '2']);
         \App\Models\HardwarePart::factory()->create(['name'=> 'AsRock Challenger RX 6750XT', 'hardware_type_id' => '2', 'vendor_id' => '3']);
         \App\Models\HardwarePart::factory()->create(['name'=> 'AMD Vega 8 Graphics (Ryzen 5 2500U)', 'hardware_type_id' => '3', 'vendor_id' => '3']);
+        \App\Models\Game::factory()->create(
+            ['title'=>'Resident Evil 4(2023)',
+            'publisher' => 'Capcom',
+            'developer'=>'Capcom',
+            'release_date' => '4/20/2023']
+        );
+        \App\Models\Game::factory()->create(
+            ['title'=>'Sonic Generations(2011)',
+                'publisher' => 'Sega',
+                'developer'=>'Sonic Team',
+                'release_date' => '10/11/2011']
+        );
+        \App\Models\Game::factory()->create(
+            ['title'=>'The Elders Scrolls V : Skyrim (2011)',
+                'publisher' => 'Microsoft',
+                'developer'=>'Bethesda Games Studios',
+                'release_date' => '11/11/2011']
+        );
         // \App\Models\User::factory(10)->create();
 
         // \App\Models\User::factory()->create([

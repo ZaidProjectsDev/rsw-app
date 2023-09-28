@@ -23,3 +23,7 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::resource('hardwareparts', \App\Http\Controllers\HardwarePartController::class);
 Route::get('/hardwareparts',[\App\Http\Controllers\HardwarePartController::class,'index']);
+Route::get('get-data/{your_id}', [\App\Http\Controllers\HardwarePartController::class, 'show']);
+
+Route::get('/games',[\App\Http\Controllers\GameController::class,'index']);
+Route::get('games/{your_id}', [\App\Http\Controllers\GameController::class, 'show']);
