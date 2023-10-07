@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@extends('layouts.gameheader');
+
 @section('content')
     <div class="container">
         <div class="row justify-content-center">
@@ -13,8 +13,7 @@
                                 {{ session('status') }}
                             </div>
                         @endif
-                        <?
-                        ?>
+
                         @forelse($parts as $part)
                             <div class="col-md-6 col-xl-4 card w-auto">
                                     <h2>{{ $part->name}}

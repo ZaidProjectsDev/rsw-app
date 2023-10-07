@@ -1,15 +1,20 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Models\Game;
 use Illuminate\Http\Request;
 
 class GameController extends Controller
 {
+    /**
+     * Display a listing of the resource.
+     */
     public function index()
     {
         $games = Game::all();
         return view('games.index', compact('games'));
+        //
     }
 
     /**
@@ -31,16 +36,17 @@ class GameController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Game $game)
     {
-        $games = Game::findMany($id);
+        $games = Game::findMany($game);
         return view('games.index', compact('games'));
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Game $game)
     {
         //
     }
@@ -48,7 +54,7 @@ class GameController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Game $game)
     {
         //
     }
@@ -56,7 +62,7 @@ class GameController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Game $game)
     {
         //
     }
