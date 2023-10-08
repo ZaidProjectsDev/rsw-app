@@ -45,8 +45,12 @@ class User extends Authenticatable
 
 
     //Relations
-    public function games()
+    public function games(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
-        $this->belongsToMany(Game::class);
+       return $this->belongsToMany(Game::class);
+    }
+    public function roles()
+    {
+        return $this->hasOne(Role::class);
     }
 }
