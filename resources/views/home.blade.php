@@ -13,18 +13,11 @@
                             {{ session('status') }}
                         </div>
                     @endif
+                        {{dd(Auth::user()->getRole()) }}
 
-                        {{dd(Auth::user()->roles->role)}}
                     {{ __('You are logged in!')}}
 
-                        @forelse(Auth::user()->role() as $role)
-                            {{$role->role}}
 
-                        @empty
-                            <div class="col-md-6 col-xl-4 card w-auto">
-                                <span>There's nothing to see here. </span>
-                            </div>
-                        @endforelse
                 </div>
             </div>
         </div>
