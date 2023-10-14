@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 /**
  * @property string $name
@@ -85,4 +86,9 @@ class HardwarePart extends Model
     {
         return $this->belongsTo(HardwareType::class);
     }
+    public function userHardwareConfiguration(): BelongsToMany
+    {
+        return $this->belongsToMany(UserHardwareConfiguration::class);
+    }
+
 }

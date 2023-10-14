@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use App\Models\Game;
+use App\Models\UserHardwareConfiguration;
 use Database\Factories\GameFactory;
 use Illuminate\Database\Seeder;
 
@@ -14,6 +15,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+        \App\Models\User::factory(4)->create();
         /*
         \App\Models\Game::factory(10)->create();
         \App\Models\User::factory(4)->create();
@@ -56,6 +58,15 @@ class DatabaseSeeder extends Seeder
                 'developer'=>'Bethesda Games Studios',
                 'release_date' => '11/11/2011']
         );
+        UserHardwareConfiguration::factory(5)->create();
+        \App\Models\Submission::factory()->create(
+            ['name'=>'Low End Skyrim',
+                'user_id' => '1',
+                'game_id' => '3',
+                'hardware_configuration_id'=> UserHardwareConfiguration::inRandomOrder()->first()->id,
+                'description' => 'Test']
+        );
+
         // \App\Models\User::factory(10)->create();
 
         // \App\Models\User::factory()->create([

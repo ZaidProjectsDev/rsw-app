@@ -81,4 +81,8 @@ class Game extends Model
     {
         $this->belongsToMany(User::class);
     }
+    public function submissions()
+    {
+        $this->belongsToMany(Submission::class);
+    }
 }

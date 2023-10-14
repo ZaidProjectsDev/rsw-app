@@ -10,8 +10,12 @@ return new class extends Migration {
         Schema::create('submissions', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->integer('gameId');
-            $table->string('hardwareId');
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->unsignedBigInteger('game_id');
+            $table->foreign('game_id')->references('id')->on('games')->onDelete('cascade');
+            $table->unsignedBigInteger('hardware_configuration_id');
+            $table->foreign('hardware_configuration_id')->references('id')->on('user_hardware_configurations');
             $table->string('description');
             $table->timestamps();
         });

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -14,6 +15,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Submission extends Model
 {
+    use HasFactory;
     /**
      * The database table used by the model.
      *
@@ -34,7 +36,7 @@ class Submission extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'gameId', 'hardwareId', 'description', 'created_at', 'updated_at'
+        'name','user_id', 'game_id', 'hardwareId', 'description', 'created_at', 'updated_at'
     ];
 
     /**
@@ -52,7 +54,7 @@ class Submission extends Model
      * @var array
      */
     protected $casts = [
-        'name' => 'string', 'gameId' => 'int', 'hardwareId' => 'string', 'description' => 'string', 'created_at' => 'timestamp', 'updated_at' => 'timestamp'
+        'name' => 'string','user_id'=>'int', 'game_id' => 'int', 'hardware_id' => 'string', 'description' => 'string', 'created_at' => 'timestamp', 'updated_at' => 'timestamp'
     ];
 
     /**
@@ -71,6 +73,18 @@ class Submission extends Model
      */
     public $timestamps = true;
 
+    public function user()
+    {
+       return  $this->belongsTo(User::class);
+    }
+    public function game()
+    {
+       return  $this->belongsTo(Game::class);
+    }
+    public function hardwareConfiguration()
+    {
+        return $this->belongsTo(UserHardwareConfiguration::class);
+    }
     // Scopes...
 
     // Functions ...
