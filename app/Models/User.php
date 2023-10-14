@@ -3,6 +3,7 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Http\Controllers\UserController;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -45,9 +46,14 @@ class User extends Authenticatable
 
 
     //Relations
-    public function games()
+    public function games(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
-        $this->belongsToMany(Game::class);
+       return $this->belongsToMany(Game::class);
+    }
+    public function getRole()
+    {
+        $role =UserController::getRole(Auth::user()->id);
+        return dd($role);
     }
     public function submissions()
     {
