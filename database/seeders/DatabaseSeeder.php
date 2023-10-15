@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use App\Models\Game;
+use App\Models\Role;
 use App\Models\UserHardwareConfiguration;
 use Database\Factories\GameFactory;
 use Illuminate\Database\Seeder;
@@ -15,6 +16,15 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+        Role::factory()->create(['name'=> 'user_limited']);
+        Role::factory()->create(['name'=> 'user_admin']);
+        \App\Models\User::factory()->create([
+            'name' => 'Admin',
+            'email' => 'admin@admin.com',
+            'password' => bcrypt('admin'),
+            'role_id' => '2'
+            ]);
+
         \App\Models\User::factory(4)->create();
         /*
         \App\Models\Game::factory(10)->create();

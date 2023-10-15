@@ -27,7 +27,7 @@
                                 </h3>
                                 <h3>Hardware Type:
                                     <span>{{$sub->hardwareConfiguration->name}}</span>
-                                    {{dd($sub->hardwareConfiguration->hardwareParts)}}
+                                    {{dd($sub->hardwareConfiguration->hardwareparts)}}
 
                                     @forelse($hardwareConfiguration->hardwareParts as $part)
                                         <li>{{$part->name}} </li>
