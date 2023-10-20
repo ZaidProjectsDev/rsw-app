@@ -28,7 +28,7 @@ final class PartFactory extends Factory
     {
         return [
             'name' => fake()->name,
-            'hardware_type_id' => fake()->randomNumber(),
+            'type_id' => fake()->randomNumber(),
             'vendor_id' => fake()->word,
         ];
     }

@@ -17,7 +17,7 @@ class Configuration extends Model
     }
     public function parts()
     {
-        return $this->belongsToMany(Part::class);
+        return $this->belongsToMany(Part::class, 'configuration_part');
     }
     public function submissions()
     {
@@ -30,5 +30,12 @@ class Configuration extends Model
 
         return $mostCommonTier;
     }
+    public function cpu()
+    {
 
+        return $this->belongsTo(Part::class)->whereHas('type', function ($query) {
+            $query->where('name', 'CPU');
+        });
+
+    }
 }

@@ -11,13 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('user_hardware_configurations', function (Blueprint $table) {
+        Schema::create('configurations', function (Blueprint $table) {
             $table->id();
             $table->string('name');
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
-            $table->unsignedBigInteger('hardware_part_id');
-            $table->foreign('hardware_part_id')->references('id')->on('hardware_parts');
 
 
             $table->timestamps();
@@ -29,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('user_hardware_configurations');
+        Schema::dropIfExists('configurations');
     }
 };

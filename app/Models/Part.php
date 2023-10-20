@@ -21,7 +21,7 @@ class Part extends Model
      *
      * @var string
      */
-    protected $table = 'hardware_parts';
+    protected $table = 'parts';
 
     /**
      * The primary key for the model.
@@ -36,7 +36,7 @@ class Part extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'hardware_type_id', 'vendor_id', 'created_at', 'updated_at'
+        'name', 'type_id', 'vendor_id', 'created_at', 'updated_at'
     ];
 
     /**
@@ -54,7 +54,7 @@ class Part extends Model
      * @var array
      */
     protected $casts = [
-        'name' => 'string', 'hardware_type_id' => 'int', 'vendor_id' => 'int', 'created_at' => 'timestamp', 'updated_at' => 'timestamp'
+        'name' => 'string', 'type_id' => 'int', 'vendor_id' => 'int', 'created_at' => 'timestamp', 'updated_at' => 'timestamp'
     ];
 
     /**
@@ -82,13 +82,13 @@ class Part extends Model
     {
         return $this->belongsTo(Vendor::class);
     }
-    public function hardwareType()
+    public function type()
     {
         return $this->belongsTo(Type::class);
     }
-    public function userHardwareConfiguration(): BelongsToMany
+    public function configuration(): BelongsToMany
     {
-        return $this->belongsToMany(Configuration::class);
+        return $this->belongsToMany(Configuration::class,'configuration_part','configuration_id','part_id');
     }
 
 }

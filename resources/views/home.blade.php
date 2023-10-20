@@ -25,19 +25,24 @@
                                 <h3>Vendor:
                                     <span>{{ $sub->game->title}}</span>
                                 </h3>
-                                <h3>Hardware Type:
-                                    <span>{{$sub->configuration->name}}</span>
-                                    {{dd($sub->configuration->parts)}}
+                                <h3>Hardware Type:</h3>
 
-                                    @forelse($configuration->parts as $part)
+                                    <span>{{$sub->configuration->name}}</span>
+
+
+                                    @forelse($sub->configuration->parts as $part)
                                         <li>{{$part->name}} </li>
-                                        <li>{{$part->vendor}} </li>
+                                        <li>{{$part->vendor->name}} </li>
+                                {{dd($sub->configuration->cpu)}}
+                                        @if($sub->configuration->cpu) != null)
+                                        <li>{{ $sub->configuration->cpu->name}} </li>
+                                     @endif
                                     @empty
                                         <div class="col-md-6 col-xl-4 card w-auto">
                                             <span>There's nothing to see here. </span>
                                         </div>
                                     @endforelse
-                                </h3>
+
                             </div>
 
                         @empty

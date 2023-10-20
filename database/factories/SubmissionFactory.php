@@ -31,7 +31,7 @@ final class SubmissionFactory extends Factory
             'name' => fake()->name,
             'user_id'=> fake()->randomNumber(),
             'game_id' => fake()->randomNumber(),
-            'hardware_configuration_id'=> Configuration::inRandomOrder()->first(),
+            'configuration_id'=> Configuration::inRandomOrder()->first(),
             'description' => fake()->text,
         ];
     }

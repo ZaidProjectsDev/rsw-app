@@ -22,7 +22,6 @@ class ConfigurationFactory extends Factory
         return [
             'name' => fake()->name(),
             'user_id'=> User::inRandomOrder()->first()->id,
-            'hardware_part_id'=> Part::inRandomOrder()->first()->id,
         ];
     }
 }
