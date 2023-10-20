@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Database\Factories;
 
-use App\Models\UserHardwareConfiguration;
+use App\Models\Configuration;
 use App\Models\Submission;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -31,7 +31,7 @@ final class SubmissionFactory extends Factory
             'name' => fake()->name,
             'user_id'=> fake()->randomNumber(),
             'game_id' => fake()->randomNumber(),
-            'hardware_configuration_id'=> UserHardwareConfiguration::inRandomOrder()->first(),
+            'hardware_configuration_id'=> Configuration::inRandomOrder()->first(),
             'description' => fake()->text,
         ];
     }

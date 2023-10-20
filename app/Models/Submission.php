@@ -81,9 +81,9 @@ class Submission extends Model
     {
        return  $this->belongsTo(Game::class);
     }
-    public function hardwareConfiguration()
+    public function configuration()
     {
-        return $this->belongsTo(UserHardwareConfiguration::class);
+        return $this->belongsTo(Configuration::class);
     }
     // Scopes...
 

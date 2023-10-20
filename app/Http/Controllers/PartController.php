@@ -2,16 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\UserHardwareConfiguration;
+use App\Models\Part;
+use App\Models\Type;
 use Illuminate\Http\Request;
 
-class UserHardwareConfigurationController extends Controller
+class PartController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
+     $parts = Part::all();
+
+     return view('hardwareparts.index', compact('parts'));
         //
     }
 
@@ -34,15 +38,18 @@ class UserHardwareConfigurationController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(UserHardwareConfiguration $hardwareConfiguration)
+    public function show(string $id)
     {
+
+        $parts = Part::findMany($id);
+        return view('hardwareparts.index', compact('parts'));
         //
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(UserHardwareConfiguration $hardwareConfiguration)
+    public function edit(string $id)
     {
         //
     }
@@ -50,7 +57,7 @@ class UserHardwareConfigurationController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, UserHardwareConfiguration $hardwareConfiguration)
+    public function update(Request $request, string $id)
     {
         //
     }
@@ -58,7 +65,7 @@ class UserHardwareConfigurationController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(UserHardwareConfiguration $hardwareConfiguration)
+    public function destroy(string $id)
     {
         //
     }

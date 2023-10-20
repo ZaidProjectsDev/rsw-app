@@ -19,7 +19,7 @@ use Illuminate\Support\Facades\Route;
 Auth::routes();
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::resource('hardwareparts', \App\Http\Controllers\HardwarePartController::class);
+Route::resource('parts', \App\Http\Controllers\PartController::class);
 
 
 //Route::get('/games',[\App\Http\Controllers\GameController::class,'index']);

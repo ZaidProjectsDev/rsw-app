@@ -13,7 +13,7 @@ class Vendor extends Model
     //relations
     public function hardwareParts()
     {
-        $this->belongsToMany(HardwarePart::class);
+        $this->belongsToMany(Part::class);
     }
 
 

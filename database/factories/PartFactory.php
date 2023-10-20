@@ -4,20 +4,20 @@ declare(strict_types=1);
 
 namespace Database\Factories;
 
-use App\Models\ExperienceTier;
+use App\Models\Part;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends Factory<\App\Models\ExperienceTier>
+ * @extends Factory<\App\Models\Part>
  */
-final class ExperienceTierFactory extends Factory
+final class PartFactory extends Factory
 {
     /**
     * The name of the factory's corresponding model.
     *
     * @var string
     */
-    protected $model = ExperienceTier::class;
+    protected $model = Part::class;
 
     /**
     * Define the model's default state.
@@ -28,7 +28,8 @@ final class ExperienceTierFactory extends Factory
     {
         return [
             'name' => fake()->name,
-            'ranking' => fake()->randomNumber(),
+            'hardware_type_id' => fake()->randomNumber(),
+            'vendor_id' => fake()->word,
         ];
     }
 }

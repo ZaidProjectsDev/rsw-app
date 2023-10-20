@@ -26,10 +26,10 @@
                                     <span>{{ $sub->game->title}}</span>
                                 </h3>
                                 <h3>Hardware Type:
-                                    <span>{{$sub->hardwareConfiguration->name}}</span>
-                                    {{dd($sub->hardwareConfiguration->hardwareparts)}}
+                                    <span>{{$sub->configuration->name}}</span>
+                                    {{dd($sub->configuration->parts)}}
 
-                                    @forelse($hardwareConfiguration->hardwareParts as $part)
+                                    @forelse($configuration->parts as $part)
                                         <li>{{$part->name}} </li>
                                         <li>{{$part->vendor}} </li>
                                     @empty

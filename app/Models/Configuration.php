@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 
-class UserHardwareConfiguration extends Model
+class Configuration extends Model
 {
     use HasFactory;
     public $timestamps = true;
@@ -15,9 +15,9 @@ class UserHardwareConfiguration extends Model
     {
         return  $this->belongsTo(User::class);
     }
-    public function hardwareParts()
+    public function parts()
     {
-        return $this->belongsToMany(HardwarePart::class);
+        return $this->belongsToMany(Part::class);
     }
     public function submissions()
     {

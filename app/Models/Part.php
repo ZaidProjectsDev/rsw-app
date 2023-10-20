@@ -13,7 +13,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
  * @property int    $created_at
  * @property int    $updated_at
  */
-class HardwarePart extends Model
+class Part extends Model
 {
     use HasFactory;
     /**
@@ -84,11 +84,11 @@ class HardwarePart extends Model
     }
     public function hardwareType()
     {
-        return $this->belongsTo(HardwareType::class);
+        return $this->belongsTo(Type::class);
     }
     public function userHardwareConfiguration(): BelongsToMany
     {
-        return $this->belongsToMany(UserHardwareConfiguration::class);
+        return $this->belongsToMany(Configuration::class);
     }
 
 }

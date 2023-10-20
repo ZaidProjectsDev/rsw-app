@@ -2,27 +2,27 @@
 
 namespace Database\Factories;
 
-use App\Models\HardwarePart;
+use App\Models\Part;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
-use App\Models\UserHardwareConfiguration;
+use App\Models\Configuration;
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\UserHardwareConfiguration>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Configuration>
  */
-class UserHardwareConfigurationFactory extends Factory
+class ConfigurationFactory extends Factory
 {
     /**
      * Define the model's default state.
      *
      * @return array<string, mixed>
      */
-    protected $model = UserHardwareConfiguration::class;
+    protected $model = Configuration::class;
     public function definition(): array
     {
         return [
             'name' => fake()->name(),
             'user_id'=> User::inRandomOrder()->first()->id,
-            'hardware_part_id'=> HardwarePart::inRandomOrder()->first()->id,
+            'hardware_part_id'=> Part::inRandomOrder()->first()->id,
         ];
     }
 }

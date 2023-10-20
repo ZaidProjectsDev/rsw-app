@@ -5,7 +5,7 @@ namespace Database\Seeders;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use App\Models\Game;
 use App\Models\Role;
-use App\Models\UserHardwareConfiguration;
+use App\Models\Configuration;
 use Database\Factories\GameFactory;
 use Illuminate\Database\Seeder;
 
@@ -37,19 +37,19 @@ class DatabaseSeeder extends Seeder
         \App\Models\Vendor::factory()->create(['name'=> 'Ati']);
         \App\Models\Vendor::factory()->create(['name'=> 'SK Hynix']);
         \App\Models\Vendor::factory()->create(['name'=> 'Samsung Semiconductor']);
-        \App\Models\HardwareType::factory()->create(['name'=> 'CPU']);
-        \App\Models\HardwareType::factory()->create(['name'=> 'GPU']);
-        \App\Models\HardwareType::factory()->create(['name'=> 'iGPU']);
-        \App\Models\HardwareType::factory()->create(['name'=> 'RAM']);
-        \App\Models\HardwareType::factory()->create(['name'=> 'Storage']);
-        \App\Models\HardwareType::factory()->create(['name'=> 'PCI-Express Card']);
-        \App\Models\HardwarePart::factory()->create(['name'=> 'Amd Ryzen 5 1600', 'hardware_type_id' => '1', 'vendor_id' => '3']);
-        \App\Models\HardwarePart::factory()->create(['name'=> 'Amd Ryzen 5 2500U', 'hardware_type_id' => '1', 'vendor_id' => '3']);
-        \App\Models\HardwarePart::factory()->create(['name'=> 'Amd Ryzen 5 3600', 'hardware_type_id' => '1', 'vendor_id' => '3']);
-        \App\Models\HardwarePart::factory()->create(['name'=> 'Intel Core i5-10400F', 'hardware_type_id' => '1', 'vendor_id' => '1']);
-        \App\Models\HardwarePart::factory()->create(['name'=> 'EVGA RTX 2070 8GB', 'hardware_type_id' => '2', 'vendor_id' => '2']);
-        \App\Models\HardwarePart::factory()->create(['name'=> 'AsRock Challenger RX 6750XT', 'hardware_type_id' => '2', 'vendor_id' => '3']);
-        \App\Models\HardwarePart::factory()->create(['name'=> 'AMD Vega 8 Graphics (Ryzen 5 2500U)', 'hardware_type_id' => '3', 'vendor_id' => '3']);
+        \App\Models\Type::factory()->create(['name'=> 'CPU']);
+        \App\Models\Type::factory()->create(['name'=> 'GPU']);
+        \App\Models\Type::factory()->create(['name'=> 'iGPU']);
+        \App\Models\Type::factory()->create(['name'=> 'RAM']);
+        \App\Models\Type::factory()->create(['name'=> 'Storage']);
+        \App\Models\Type::factory()->create(['name'=> 'PCI-Express Card']);
+        \App\Models\Part::factory()->create(['name'=> 'Amd Ryzen 5 1600', 'hardware_type_id' => '1', 'vendor_id' => '3']);
+        \App\Models\Part::factory()->create(['name'=> 'Amd Ryzen 5 2500U', 'hardware_type_id' => '1', 'vendor_id' => '3']);
+        \App\Models\Part::factory()->create(['name'=> 'Amd Ryzen 5 3600', 'hardware_type_id' => '1', 'vendor_id' => '3']);
+        \App\Models\Part::factory()->create(['name'=> 'Intel Core i5-10400F', 'hardware_type_id' => '1', 'vendor_id' => '1']);
+        \App\Models\Part::factory()->create(['name'=> 'EVGA RTX 2070 8GB', 'hardware_type_id' => '2', 'vendor_id' => '2']);
+        \App\Models\Part::factory()->create(['name'=> 'AsRock Challenger RX 6750XT', 'hardware_type_id' => '2', 'vendor_id' => '3']);
+        \App\Models\Part::factory()->create(['name'=> 'AMD Vega 8 Graphics (Ryzen 5 2500U)', 'hardware_type_id' => '3', 'vendor_id' => '3']);
         \App\Models\Game::factory()->create(
             ['title'=>'Resident Evil 4(2023)',
             'publisher' => 'Capcom',
@@ -68,12 +68,12 @@ class DatabaseSeeder extends Seeder
                 'developer'=>'Bethesda Games Studios',
                 'release_date' => '11/11/2011']
         );
-        UserHardwareConfiguration::factory(5)->create();
+        Configuration::factory(5)->create();
         \App\Models\Submission::factory()->create(
             ['name'=>'Low End Skyrim',
                 'user_id' => '1',
                 'game_id' => '3',
-                'hardware_configuration_id'=> UserHardwareConfiguration::inRandomOrder()->first()->id,
+                'hardware_configuration_id'=> Configuration::inRandomOrder()->first()->id,
                 'description' => 'Test']
         );
 

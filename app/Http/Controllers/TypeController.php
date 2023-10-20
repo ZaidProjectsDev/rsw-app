@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-class HardwareTypeController extends Controller
+class TypeController extends Controller
 {
 
 

@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property int    $created_at
  * @property int    $updated_at
  */
-class ExperienceTier extends Model
+class Experience extends Model
 {
     /**
      * The database table used by the model.

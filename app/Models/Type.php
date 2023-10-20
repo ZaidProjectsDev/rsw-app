@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class HardwareType extends Model
+class Type extends Model
 {
     use HasFactory;
     protected $table= 'hardware_types';
@@ -35,6 +35,6 @@ class HardwareType extends Model
     public $timestamps = true;
     public function hardwareParts()
     {
-        $this->belongsToMany(HardwarePart::class, 'hardware_type_id');
+        $this->belongsToMany(Part::class, 'hardware_type_id');
     }
 }
