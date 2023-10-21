@@ -31,18 +31,22 @@
 
 
                                     @forelse($sub->configuration->parts as $part)
-                                        <li>{{$part->name}} </li>
-                                        <li>{{$part->vendor->name}} </li>
-                                {{dd($sub->configuration->cpu)}}
-                                        @if($sub->configuration->cpu) != null)
-                                        <li>{{ $sub->configuration->cpu->name}} </li>
+                                    <div class="col-md-8 col-xl-8 card">
+                                        <li>Model :{{$part->name}} </li>
+                                        <li>Vendor: {{$part->vendor->name}} </li>
+                                        @if($part->type->name === "CPU")
+                                        <li>Type : {{ $part->type->name}} </li>
+                                    </div>
                                      @endif
                                     @empty
                                         <div class="col-md-6 col-xl-4 card w-auto">
                                             <span>There's nothing to see here. </span>
                                         </div>
                                     @endforelse
-
+                                <a class="btn-link col-md-6 col-xl-4 card w-auto" href="{{ url('/') }}">View</a>
+                                @if (Auth::user()->id === $sub->user->id)
+                                    <a class="btn-link col-md-6 col-xl-4 card w-auto" href="{{ url('/') }}">Edit</a>
+                                @endif
                             </div>
 
                         @empty

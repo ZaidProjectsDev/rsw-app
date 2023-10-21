@@ -49,6 +49,16 @@
                                 </li>
                             @endif
                         @else
+
+                            <div class="navbar-nav">
+                                <input type="search" id="search-form" class="form-control" />
+                                <button type="button" class="btn btn-primary">
+                                    <i class="fas fa-search">{{ __('') }}</i>
+                                </button>
+                            </div>
+                            <a class="nav-link" href="{{ url('/games') }}">{{ __('Games') }}</a>
+                            <a class="nav-link" href="{{ route('register') }}">{{ __('Submit') }}</a>
+                            <a class="nav-link" href="{{ url('/') }}">{{ __('View Submissions') }}</a>
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }}
