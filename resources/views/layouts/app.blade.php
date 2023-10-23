@@ -56,9 +56,9 @@
                                     <i class="fas fa-search">{{ __('') }}</i>
                                 </button>
                             </div>
-                            <a class="nav-link" href="{{ url('/games') }}">{{ __('Games') }}</a>
-                            <a class="nav-link" href="{{ route('register') }}">{{ __('Submit') }}</a>
-                            <a class="nav-link" href="{{ url('/') }}">{{ __('View Submissions') }}</a>
+                            <a class="nav-link" href="{{ route('games.index')}}">{{ __('Games') }}</a>
+                            <a class="nav-link" href="{{ route('submissions.create') }}">{{ __('Submit') }}</a>
+                            <a class="nav-link" href="{{ route('submissions.index')}}">{{ __('View Submissions') }}</a>
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }}

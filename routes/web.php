@@ -24,4 +24,5 @@ Route::resource('parts', \App\Http\Controllers\PartController::class);
 
 //Route::get('/games',[\App\Http\Controllers\GameController::class,'index']);
 Route::resource('/games',\App\Http\Controllers\GameController::class);
+Route::resource('/submissions',\App\Http\Controllers\SubmissionController::class);
 //oute::get('games/{your_id}', [\App\Http\Controllers\GameController::class, 'show']);
