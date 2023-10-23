@@ -27,9 +27,15 @@ class SubmissionController extends Controller
     public function create()
     {
         $user = Auth::user()->id;
+
         $submision = new Submission();
+
+
+
         $configurations = Configuration::where('user_id','=',$user)->get();
-        $selected_configuration = Configuration::all()->first()->id;
+
+
+        $selected_configuration = Configuration::where('user_id','=',$user)->get()->first()->id;
 
         $games= Game::all();
         $selected_game = $games->first()->id;

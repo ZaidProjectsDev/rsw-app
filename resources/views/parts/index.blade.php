@@ -22,7 +22,7 @@
                                         <span>{{ $part->vendor->name}}</span>
                                     </h3>
                                     <h3>Hardware Type:
-                                    <span>{{$part->hardwareType->name}}</span>
+                                    <span>{{$part->type->name}}</span>
                                     </h3>
                                 </div>
 

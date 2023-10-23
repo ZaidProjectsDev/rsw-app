@@ -66,6 +66,7 @@
                                     @if ($configurations->count())
 
                                         @forelse($configurations as $configuraiton)
+
                                             <option value="{{ $configuraiton->id }}" {{ $selected_configuration == $configuraiton->id ? 'selected="selected"' : '' }}>{{ $configuraiton->name }}</option>
 
                                             @empty

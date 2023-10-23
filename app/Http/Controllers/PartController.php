@@ -15,7 +15,7 @@ class PartController extends Controller
     {
      $parts = Part::all();
 
-     return view('hardwareparts.index', compact('parts'));
+     return view('parts.index', compact('parts'));
         //
     }
 

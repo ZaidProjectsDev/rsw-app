@@ -11,10 +11,7 @@ class Configuration extends Model
     use HasFactory;
     public $timestamps = true;
     protected $primaryKey = 'id';
-    public function id()
-    {
-        return $this->id();
-    }
+
     public function user()
     {
         return  $this->belongsTo(User::class);
