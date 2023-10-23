@@ -22,6 +22,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'role_id'
     ];
 
     /**
@@ -50,10 +51,9 @@ class User extends Authenticatable
     {
        return $this->belongsToMany(Game::class);
     }
-    public function getRole()
+    public function roles()
     {
-        $role =UserController::getRole(Auth::user()->id);
-        return dd($role);
+        return $this->belongsToMany(Role::class);
     }
     public function submissions()
     {

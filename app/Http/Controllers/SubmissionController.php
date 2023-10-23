@@ -6,6 +6,7 @@ use App\Models\Configuration;
 use App\Models\Game;
 use App\Models\Submission;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class SubmissionController extends Controller
 {
@@ -25,12 +26,14 @@ class SubmissionController extends Controller
      */
     public function create()
     {
+        $user = Auth::user()->id;
         $submision = new Submission();
-        $configurations = Configuration::all();
+        $configurations = Configuration::where('user_id','=',$user)->get();
         $selected_configuration = Configuration::all()->first()->id;
 
         $games= Game::all();
         $selected_game = $games->first()->id;
+
         return view('submissions.create', compact('submision','configurations', 'selected_configuration', 'games', 'selected_game'));
     }
 
@@ -39,7 +42,31 @@ class SubmissionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+
+        $request->validate([
+
+            'name' => 'required',
+
+            'description' => 'required',
+
+            'game_id'=> 'required',
+
+            'configuration_id' => 'required',
+
+
+        ]);
+
+        $user_id = Auth::user()->id;
+        $request->request->add(['user_id'=>$user_id]);
+
+        Submission::create($request->all());
+
+
+
+        return redirect()->route('submissions.index')
+
+            ->with('success','Product created successfully.');
     }
 
     /**

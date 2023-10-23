@@ -59,7 +59,6 @@
 
 
                             <form action="{{ route('submissions.store') }}" method="POST">
-
                                 @csrf
                                 <h2>Hardware Configuration: </h2>
                                 <select class="form-control m-bot15" name="configuration_id">
@@ -113,7 +112,7 @@
 
                                             <strong>Detail:</strong>
 
-                                            <textarea class="form-control" style="height:150px" name="detail" placeholder="Detail"></textarea>
+                                            <textarea class="form-control" style="height:150px" name="description" placeholder="Detail"></textarea>
 
                                         </div>
 
