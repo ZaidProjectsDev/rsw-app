@@ -32,25 +32,44 @@ class DatabaseSeeder extends Seeder
         \App\Models\User::factory(4)->create();
         \App\Models\GameUser::factory(5)->create();
         */
+        \App\Models\Vendor::factory()->create(['name'=> 'None']);
         \App\Models\Vendor::factory()->create(['name'=> 'Intel']);
         \App\Models\Vendor::factory()->create(['name'=> 'Nvidia']);
         \App\Models\Vendor::factory()->create(['name'=> 'AMD']);
         \App\Models\Vendor::factory()->create(['name'=> 'Ati']);
         \App\Models\Vendor::factory()->create(['name'=> 'SK Hynix']);
         \App\Models\Vendor::factory()->create(['name'=> 'Samsung Semiconductor']);
+        \App\Models\Vendor::factory()->create(['name'=> 'Asus']);
+        \App\Models\Vendor::factory()->create(['name'=> 'Western Digital']);
+        \App\Models\Vendor::factory()->create(['name'=> 'Crucial']);
+        \App\Models\Vendor::factory()->create(['name'=> 'Seagate']);
         \App\Models\Type::factory()->create(['name'=> 'CPU']);
         \App\Models\Type::factory()->create(['name'=> 'GPU']);
         \App\Models\Type::factory()->create(['name'=> 'iGPU']);
         \App\Models\Type::factory()->create(['name'=> 'RAM']);
         \App\Models\Type::factory()->create(['name'=> 'Storage']);
         \App\Models\Type::factory()->create(['name'=> 'PCI-Express Card']);
-        \App\Models\Part::factory()->create(['name'=> 'Amd Ryzen 5 1600', 'type_id' => '1', 'vendor_id' => '3']);
-        \App\Models\Part::factory()->create(['name'=> 'Amd Ryzen 5 2500U', 'type_id' => '1', 'vendor_id' => '3']);
-        \App\Models\Part::factory()->create(['name'=> 'Amd Ryzen 5 3600', 'type_id' => '1', 'vendor_id' => '3']);
-        \App\Models\Part::factory()->create(['name'=> 'Intel Core i5-10400F', 'type_id' => '1', 'vendor_id' => '1']);
-        \App\Models\Part::factory()->create(['name'=> 'EVGA RTX 2070 8GB', 'type_id' => '2', 'vendor_id' => '2']);
-        \App\Models\Part::factory()->create(['name'=> 'AsRock Challenger RX 6750XT', 'type_id' => '2', 'vendor_id' => '3']);
-        \App\Models\Part::factory()->create(['name'=> 'AMD Vega 8 Graphics (Ryzen 5 2500U)', 'type_id' => '3', 'vendor_id' => '3']);
+
+        \App\Models\Part::factory()->create(['name'=> 'None', 'type_id' => '6', 'vendor_id' => '1']);
+        \App\Models\Part::factory()->create(['name'=> 'None', 'type_id' => '2', 'vendor_id' => '1']);
+        \App\Models\Part::factory()->create(['name'=> 'None', 'type_id' => '3', 'vendor_id' => '1']);
+
+        \App\Models\Part::factory()->create(['name'=> '4GB RAM', 'type_id' => '4', 'vendor_id' => '6']);
+        \App\Models\Part::factory()->create(['name'=> '8GB RAM', 'type_id' => '4', 'vendor_id' => '6']);
+        \App\Models\Part::factory()->create(['name'=> '16GB RAM', 'type_id' => '4', 'vendor_id' => '6']);
+        \App\Models\Part::factory()->create(['name'=> '512 GB SSD', 'type_id' => '5', 'vendor_id' => '7']);
+        \App\Models\Part::factory()->create(['name'=> '1TB SSD', 'type_id' => '5', 'vendor_id' => '8']);
+        \App\Models\Part::factory()->create(['name'=> '2TB SSD', 'type_id' => '5', 'vendor_id' => '9']);
+        \App\Models\Part::factory()->create(['name'=> 'ASUS Tek Wifi 5 PCI Express', 'type_id' => '6', 'vendor_id' => '8']);
+
+
+        \App\Models\Part::factory()->create(['name'=> 'Amd Ryzen 5 1600', 'type_id' => '1', 'vendor_id' => '4']);
+        \App\Models\Part::factory()->create(['name'=> 'Amd Ryzen 5 2500U', 'type_id' => '1', 'vendor_id' => '4']);
+        \App\Models\Part::factory()->create(['name'=> 'Amd Ryzen 5 3600', 'type_id' => '1', 'vendor_id' => '4']);
+        \App\Models\Part::factory()->create(['name'=> 'Intel Core i5-10400F', 'type_id' => '1', 'vendor_id' => '2']);
+        \App\Models\Part::factory()->create(['name'=> 'EVGA RTX 2070 8GB', 'type_id' => '2', 'vendor_id' => '3']);
+        \App\Models\Part::factory()->create(['name'=> 'AsRock Challenger RX 6750XT', 'type_id' => '2', 'vendor_id' => '4']);
+        \App\Models\Part::factory()->create(['name'=> 'AMD Vega 8 Graphics (Ryzen 5 2500U)', 'type_id' => '3', 'vendor_id' => '4']);
         \App\Models\Game::factory()->create(
             ['title'=>'Resident Evil 4(2023)',
             'publisher' => 'Capcom',
