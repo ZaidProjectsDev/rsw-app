@@ -15,6 +15,10 @@ class SubmissionController extends Controller
      */
     public function index()
     {
+        if(Auth::user() == null)
+        {
+            return  view ('auth.login');
+        }
         $submissions = Submission::all();
         $configurations = Configuration::all();
         return view('submissions.index', compact('submissions', ));
@@ -26,6 +30,10 @@ class SubmissionController extends Controller
      */
     public function create()
     {
+        if(Auth::user() == null)
+        {
+            return  view ('auth.login');
+        }
         $user = Auth::user()->id;
 
         $submision = new Submission();

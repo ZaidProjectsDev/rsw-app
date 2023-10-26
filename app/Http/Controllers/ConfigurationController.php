@@ -23,6 +23,10 @@ class ConfigurationController extends Controller
      */
     public function create()
     {
+        if(Auth::user() == null)
+        {
+          return  view ('auth.login');
+        }
         $user = Auth::user()->id;
 
 
