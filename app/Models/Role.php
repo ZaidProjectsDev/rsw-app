@@ -10,4 +10,8 @@ class Role extends Model
     use HasFactory;
     protected $table = 'roles';
     protected $primaryKey = 'id';
+    public function users()
+    {
+        return $this->belongsToMany(Role::class);
+}
 }

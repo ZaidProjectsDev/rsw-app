@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\SearchController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,10 +21,12 @@ Auth::routes();
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::resource('parts', \App\Http\Controllers\PartController::class);
-
+Route::get('/search', [SearchController::class, 'search'])->name('search');
 
 //Route::get('/games',[\App\Http\Controllers\GameController::class,'index']);
 Route::resource('/games',\App\Http\Controllers\GameController::class);
 Route::resource('/submissions',\App\Http\Controllers\SubmissionController::class);
 Route::resource('/configurations',\App\Http\Controllers\ConfigurationController::class);
+Route::resource('/vendors',\App\Http\Controllers\VendorController::class);
+Route::resource('/parts',\App\Http\Controllers\PartController::class);
 //oute::get('games/{your_id}', [\App\Http\Controllers\GameController::class, 'show']);

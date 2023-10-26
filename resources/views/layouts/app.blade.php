@@ -50,17 +50,32 @@
                             @endif
                         @else
 
-                            <div class="navbar-nav">
-                                <input type="search" id="search-form" class="form-control" />
-                                <button type="button" class="btn btn-primary">
-                                    <i class="fas fa-search">{{ __('') }}</i>
-                                </button>
-                            </div>
+
+
+
+
+                                                <form action="{{ route('search') }}" method="GET">
+                                                    <div class="input-group">
+                                                        <input type="text" class="form-control" name="query" placeholder="Search...">
+                                                        <div class="input-group-append">
+                                                            <button class="btn btn-primary" type="submit">Search</button>
+                                                        </div>
+                                                    </div>
+                                                </form>
+
+
+
+
+
                             <a class="nav-link" href="{{ route('games.index')}}">{{ __('Games') }}</a>
                             <a class="nav-link" href="{{ route('submissions.create') }}">{{ __('Submit') }}</a>
                             <a class="nav-link" href="{{ route('submissions.index')}}">{{ __('View Submissions') }}</a>
                             <a class="nav-link" href="{{ route('parts.index')}}">{{ __('Hardware') }}</a>
                             <a class="nav-link" href="{{ route('configurations.index')}}">{{ __('Configurations') }}</a>
+
+                        @if(auth::user()->roles->id == 2)
+                                <a class="nav-link" href="{{ route('configurations.index')}}">{{ __('Manage Users') }}</a>
+                            @endif
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }}
