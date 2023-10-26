@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Configuration;
 use App\Models\Part;
+use App\Models\Submission;
 use Auth;
 use Illuminate\Http\Request;
 
@@ -87,4 +88,6 @@ class ConfigurationController extends Controller
     {
         //
     }
+
+
 }

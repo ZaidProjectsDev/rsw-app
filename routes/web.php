@@ -20,6 +20,7 @@ use App\Http\Controllers\SearchController;
 Auth::routes();
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::resource('parts', \App\Http\Controllers\PartController::class);
 Route::get('/search', [SearchController::class, 'search'])->name('search');
 

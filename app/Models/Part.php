@@ -91,4 +91,5 @@ class Part extends Model
         return $this->belongsToMany(Configuration::class,'configuration_part','configuration_id','part_id');
     }
 
+
 }

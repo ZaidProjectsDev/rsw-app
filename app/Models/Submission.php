@@ -85,6 +85,7 @@ class Submission extends Model
     {
         return $this->belongsTo(Configuration::class);
     }
+
     // Scopes...
 
     // Functions ...

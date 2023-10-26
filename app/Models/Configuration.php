@@ -31,12 +31,5 @@ class Configuration extends Model
 
         return $mostCommonTier;
     }
-    public function cpu()
-    {
 
-        return $this->belongsTo(Part::class)->whereHas('type', function ($query) {
-            $query->where('name', 'CPU');
-        });
-
-    }
 }

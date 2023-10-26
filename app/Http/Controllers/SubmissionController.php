@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Configuration;
 use App\Models\Game;
+use App\Models\Part;
 use App\Models\Submission;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -88,6 +89,9 @@ class SubmissionController extends Controller
      */
     public function show(string $id)
     {
+        //This might be not to standard, find a better solution later in polishing phase.
+        $submission = Submission::where('id', '=',$id)->get()[0];
+        return view ('submissions.show', compact('submission'));
         //
     }
 
