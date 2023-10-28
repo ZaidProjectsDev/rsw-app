@@ -105,7 +105,8 @@ class DatabaseSeeder extends Seeder
                 'user_id' => '1',
                 'game_id' => '3',
                 'configuration_id'=> Configuration::inRandomOrder()->first()->id,
-                'description' => 'Test']
+                'description' => 'Test',
+                'visible' => '1']
         );
 
         // \App\Models\User::factory(10)->create();

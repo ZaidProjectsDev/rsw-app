@@ -33,6 +33,7 @@ final class SubmissionFactory extends Factory
             'game_id' => fake()->randomNumber(),
             'configuration_id'=> Configuration::inRandomOrder()->first(),
             'description' => fake()->text,
+            'visible' => fake()->boolean
         ];
     }
 }

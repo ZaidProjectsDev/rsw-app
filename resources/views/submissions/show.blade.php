@@ -13,6 +13,7 @@
                                 {{ session('status') }}
                             </div>
                         @endif
+
                             <div class="col-md-3 col-xl-3 card w-50">
                                 <p>Posted by : {{$submission->user->name}}</p>
                             </div>

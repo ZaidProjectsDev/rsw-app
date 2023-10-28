@@ -36,7 +36,7 @@ class Submission extends Model
      * @var array
      */
     protected $fillable = [
-        'name','user_id', 'game_id', 'configuration_id', 'description', 'created_at', 'updated_at'
+        'name','user_id', 'game_id', 'configuration_id', 'description', 'visible', 'created_at', 'updated_at'
     ];
 
     /**
@@ -54,7 +54,7 @@ class Submission extends Model
      * @var array
      */
     protected $casts = [
-        'name' => 'string','user_id'=>'int', 'game_id' => 'int', 'configuration_id' => 'int', 'description' => 'string', 'created_at' => 'timestamp', 'updated_at' => 'timestamp'
+        'name' => 'string','user_id'=>'int', 'game_id' => 'int', 'configuration_id' => 'int', 'description' => 'string', 'visible' => 'boolean', 'created_at' => 'timestamp', 'updated_at' => 'timestamp'
     ];
 
     /**

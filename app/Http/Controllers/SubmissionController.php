@@ -8,6 +8,7 @@ use App\Models\Part;
 use App\Models\Submission;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use View;
 
 class SubmissionController extends Controller
 {
@@ -100,6 +101,20 @@ class SubmissionController extends Controller
      */
     public function edit(string $id)
     {
+        $submission = Submission::find($id);
+        $configurations = Configuration::where('id', $submission->configuration_id)->get();
+        $selected_configuration = $submission->configuration_id;
+        $games = Game::all();
+        $selected_game = $submission->gameId;
+        if(!$submission)
+        {
+            return view('home');
+        }
+       return View::make('submissions.edit')->with('submission',$submission)
+           ->with('configurations',$configurations)
+           ->with('selected_configuration', $selected_configuration)
+        ->with('games', $games)
+        ->with('selected_game', $selected_game);
         //
     }
 
@@ -108,6 +123,19 @@ class SubmissionController extends Controller
      */
     public function update(Request $request, string $id)
     {
+        $submission = Submission::find($id);
+        if($submission)
+        {
+            if($submission->visible)
+            {
+                $submission->visible = 0;
+            }
+            else{
+                $submission->visible = 1;
+            }
+            $submission->save();
+        }
+        return back();
         //
     }
 

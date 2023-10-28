@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+    @csrf
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
@@ -40,7 +41,7 @@
                                     @endforelse
                                     <a class="btn-link col-md-6 col-xl-4 card w-auto" href="{{ url('/') }}">View</a>
                                     @if (Auth::user()->id === $sub->user->id)
-                                        <a class="btn-link col-md-6 col-xl-4 card w-auto" href="{{ url('/') }}">Edit</a>
+                                        <a class="btn-link col-md-6 col-xl-4 card w-auto" href="{{ route('submissions.edit',$sub->id) }}">Edit</a>
                                     @endif
                                 </div>
 
