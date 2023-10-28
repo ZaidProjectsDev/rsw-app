@@ -22,12 +22,7 @@ class HasConfigurations
         if (!$user) {
             return redirect('login');
         }
-        if(!$user->configurations)
-        {
-            $this->newUserNoConfigurationsError();
-            return redirect()->route('configurations.create');
 
-        }
         if ($user->configurations->isEmpty()) {
             $this->newUserNoConfigurationsError();
             return redirect()->route('configurations.create');

@@ -41,32 +41,10 @@ class SubmissionController extends Controller
      */
     public function create()
     {
-        if(Auth::user() == null)
-        {
-            return  view ('auth.login');
-        }
-        $user = Auth::user()->id;
+        $configurations = Configuration::all(); // Get a list of all configurations
+        $games = Game::all(); // Get a list of all games
 
-        $submision = new Submission();
-
-
-
-        $configurations = Configuration::where('user_id','=',$user)->get();
-        if($configurations.count() <1)
-        {
-
-        }
-        try {
-            $selected_configuration = Configuration::where('user_id', '=', $user)->get()->first()->id;
-        }
-        catch (\ErrorException)
-        {
-            $selected_configuration = 0;
-        }
-        $games= Game::all();
-        $selected_game = $games->first()->id;
-
-        return view('submissions.create', compact('submision','configurations', 'selected_configuration', 'games', 'selected_game'));
+        return view('submissions.create', compact('configurations', 'games'));
     }
 
     /**
@@ -74,32 +52,30 @@ class SubmissionController extends Controller
      */
     public function store(Request $request)
     {
-
-
         $request->validate([
-
-            'name' => 'required',
-
-            'description' => 'required',
-
-            'game_id'=> 'required',
-
-            'configuration_id' => 'required',
-
-
+            'name' => 'required|string',
+            'description' => 'required|string',
+            'configuration_id' => 'required|exists:configurations,id',
+            'game_id' => 'required|exists:games,id',
+            'visible' => 'boolean', // Assuming visibility is a boolean field
         ]);
 
-        $user_id = Auth::user()->id;
-        $request->request->add(['user_id'=>$user_id ]);
+        $submission = new Submission([
+            'name' => $request->input('name'),
+            'description' => $request->input('description'),
+            'configuration_id' => $request->input('configuration_id'),
+            'game_id' => $request->input('game_id'),
+            'visible' => $request->input('visible', false), // Set to false if not provided
+        ]);
 
-        Submission::create($request->all());
+        // Assign the currently authenticated user to the submission
+        $submission->user_id = auth()->user()->id;
 
+        $submission->save();
 
-
-        return redirect()->route('submissions.index')
-
-            ->with('success','Product created successfully.');
+        return redirect()->route('submissions.index')->with('success', 'Submission created successfully.');
     }
+
 
     /**
      * Display the specified resource.

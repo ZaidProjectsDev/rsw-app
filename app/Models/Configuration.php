@@ -11,14 +11,14 @@ class Configuration extends Model
     use HasFactory;
     public $timestamps = true;
     protected $primaryKey = 'id';
-
+    protected $fillable = ['name'];
     public function user()
     {
         return  $this->belongsTo(User::class);
     }
     public function parts()
     {
-        return $this->belongsToMany(Part::class, 'configuration_part');
+        return $this->belongsToMany(Part::class, 'configuration_part', 'configuration_id', 'part_id');
     }
     public function submissions()
     {

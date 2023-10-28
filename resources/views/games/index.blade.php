@@ -15,7 +15,7 @@
                         @endif
                         @forelse($games as $game)
                                 <div class="col-md-6 col-xl-4 card w-auto">
-                                    <a href="{{ route('games.show', ['id' => $game]) }}">
+                                    <a href="{{ route('games.show-content', ['id' => $game]) }}">
                                         <h2>{{ $game->title }}</h2>
                                     </a>
                                 </div>

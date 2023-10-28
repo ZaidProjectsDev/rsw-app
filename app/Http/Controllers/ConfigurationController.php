@@ -54,7 +54,48 @@ class ConfigurationController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // Validate the request data
+        $validatedData = $request->validate([
+            'name' => 'required|string',
+            // Add validation rules for other fields if needed
+        ]);
+
+        // Create a new configuration
+        $configuration = new Configuration([
+            'name' => $validatedData['name'],
+            // Add other fields as needed
+        ]);
+
+        // Associate the configuration with the currently authenticated user
+        $configuration->user_id = auth()->user()->id;
+
+        // Save the configuration to the database
+        $configuration->save();
+
+        // Get the selected parts' type IDs from the request
+        $typeIds = [
+            'cpu' => $request->input('cpu_id'),
+            'gpu' => $request->input('gpu_id'),
+            'igpu' => $request->input('igpu_id'),
+            'ram' => $request->input('ram_id'),
+            'storage' => $request->input('storage_id'),
+            'pci' => $request->input('pci_id'),
+        ];
+
+        // Attach selected parts to the configuration based on their type IDs
+        foreach ($typeIds as $type => $typeId) {
+            if ($typeId) {
+                // Find the part with the matching type_id
+                $part = Part::where('type_id', $typeId)->first();
+                if ($part) {
+                    // Attach the part to the configuration using the pivot table
+                    $configuration->parts()->attach($part->id);
+                }
+            }
+        }
+
+        return redirect()->route('configurations.index')
+            ->with('success', 'Configuration created successfully.');
     }
 
     /**

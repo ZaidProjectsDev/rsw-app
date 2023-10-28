@@ -14,7 +14,7 @@ class SearchController extends Controller
     public function search(Request $request)
     {
         //Validate this request so no one hurts the server
-        $request->validate(['query' => 'required|string|size:100']);
+        $request->validate(['query' => 'required|string|max:150|min:5']);
 
         $query = $request->input('query');
 
@@ -24,8 +24,31 @@ class SearchController extends Controller
         $vendors = Vendor::where('name', 'LIKE', "%$query%")->get();
         $submissions = Submission::where('name', 'LIKE', "%$query%")->get();
         $parts = Part::where('name', 'LIKE', "%$query%")->get();
-        // Perform similar queries for other tables
 
         return view('search.search_results', compact('games', 'configurations', 'submissions', 'vendors', 'parts'));
+    }
+
+    public function searchByTag(Request $request, $tag)
+    {
+        // Example of searching for items based on a tag
+        if ($tag === 'games') {
+            $results = Game::where('title', 'LIKE', '%' . $request->input('query') . '%')->get();
+        } elseif ($tag === 'submissions') {
+            $results = Submission::where('name', 'LIKE', '%' . $request->input('query') . '%')->get();
+        } else {
+            // Handle other tables or tags as needed
+            $results = [];
+        }
+
+        return view('search.tag_search_results', compact('results', 'tag'));
+    }
+    public function searchForSubmissionsByGame($game_id)
+    {
+        $results = Submission::where('game_id', $game_id)->get();
+
+
+
+        return view('search.submission_game_search_results', compact('results'));
+
     }
 }

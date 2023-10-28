@@ -86,9 +86,9 @@ class Part extends Model
     {
         return $this->belongsTo(Type::class);
     }
-    public function configuration(): BelongsToMany
+    public function configurations()
     {
-        return $this->belongsToMany(Configuration::class,'configuration_part','configuration_id','part_id');
+        return $this->belongsToMany(Configuration::class, 'configuration_part', 'part_id', 'configuration_id');
     }
 
 

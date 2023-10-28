@@ -15,6 +15,9 @@ return new class extends Migration
             $table->unsignedBigInteger('configuration_id');
             $table->unsignedBigInteger('part_id');
             $table->timestamps();
+
+            $table->foreign('configuration_id')->references('id')->on('configurations')->onDelete('cascade');
+            $table->foreign('part_id')->references('id')->on('parts')->onDelete('cascade');
         });
     }
 

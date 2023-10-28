@@ -14,9 +14,10 @@
                             <p>Publisher: {{ $game->publisher }}</p>
                             <p>Developer: {{ $game->developer }}</p>
                         </div>
-                        <a href="{{ route('submissions.show', ['submission' => $game->id]) }}" class="btn btn-primary">Show Submissions for {{ $game->title }}</a>
+
+
                         <div class="col-md-6 col-xl-4 card w-auto">
-                            <!-- Additional game details or description can be added here -->
+                            <a href="{{ route('search.search-by-game-submission', ['game_id' => $game->id] ) }}" class="btn btn-primary">Show Submissions for {{ $game->title }}</a>
                         </div>
                     </div>
                 </div>
