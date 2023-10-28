@@ -13,6 +13,9 @@ class SearchController extends Controller
 {
     public function search(Request $request)
     {
+        //Validate this request so no one hurts the server
+        $request->validate(['query' => 'required|string|size:100']);
+
         $query = $request->input('query');
 
         // Perform searches on each table and get the results

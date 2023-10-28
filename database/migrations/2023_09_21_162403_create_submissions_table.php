@@ -17,7 +17,7 @@ return new class extends Migration {
             $table->unsignedBigInteger('configuration_id');
             $table->foreign('configuration_id')->references('id')->on('configurations');
             $table->string('description');
-            $table->boolean('visible');
+            $table->boolean('visible')->default(false);
             $table->timestamps();
         });
     }

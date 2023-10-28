@@ -30,7 +30,15 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
-
+                        <form action="{{ route('search') }}" method="GET">
+                            @csrf
+                            <div class="input-group">
+                                <input type="text" class="form-control" name="query" placeholder="Search...">
+                                <div class="input-group-append">
+                                    <button class="btn btn-primary" type="submit">Search</button>
+                                </div>
+                            </div>
+                        </form>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -51,27 +59,57 @@
                         @else
 
 
+                            <!-- Games Dropdown -->
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    {{ __('Games') }}
+                                </a>
 
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{ route('games.index') }}">{{ __('View Games') }}</a>
+                                    <a class="dropdown-item" href="{{ route('games.create') }}">{{ __('Create Game') }}</a>
+                                    <!-- Add more game-related routes as needed -->
+                                </div>
+                            </li>
 
+                            <!-- Submissions Dropdown -->
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" role a button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                {{ __('Submissions') }}
+                                </a>
 
-                                                <form action="{{ route('search') }}" method="GET">
-                                                    <div class="input-group">
-                                                        <input type="text" class="form-control" name="query" placeholder="Search...">
-                                                        <div class="input-group-append">
-                                                            <button class="btn btn-primary" type="submit">Search</button>
-                                                        </div>
-                                                    </div>
-                                                </form>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{ route('submissions.index') }}">{{ __('View Submissions') }}</a>
+                                    <a class="dropdown-item" href="{{ route('submissions.create') }}">{{ __('Create Submission') }}</a>
+                                    <!-- Add more submission-related routes as needed -->
+                                </div>
+                            </li>
 
+                            <!-- Hardware Dropdown -->
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    {{ __('Hardware') }}
+                                </a>
 
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{ route('parts.index') }}">{{ __('View Hardware') }}</a>
+                                    <!-- Add more hardware-related routes as needed -->
+                                </div>
+                            </li>
 
+                            <!-- Configurations Dropdown -->
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    {{ __('Configurations') }}
+                                </a>
 
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{ route('configurations.index') }}">{{ __('View Configurations') }}</a>
+                                    <a class="dropdown-item" href="{{ route('configurations.create') }}">{{ __('Create Configuration') }}</a>
+                                    <!-- Add more configuration-related routes as needed -->
+                                </div>
+                            </li>
 
-                            <a class="nav-link" href="{{ route('games.index')}}">{{ __('Games') }}</a>
-                            <a class="nav-link" href="{{ route('submissions.create') }}">{{ __('Submit') }}</a>
-                            <a class="nav-link" href="{{ route('submissions.index')}}">{{ __('View Submissions') }}</a>
-                            <a class="nav-link" href="{{ route('parts.index')}}">{{ __('Hardware') }}</a>
-                            <a class="nav-link" href="{{ route('configurations.index')}}">{{ __('Configurations') }}</a>
 
                         @if(auth::user()->roles->id == 2)
                                 <a class="nav-link" href="{{ route('configurations.index')}}">{{ __('Manage Users') }}</a>
@@ -98,7 +136,16 @@
                 </div>
             </div>
         </nav>
-
+        @if (Session::has('error'))
+            <div class="alert alert-danger">
+                {{ Session::get('error') }}
+            </div>
+        @endif
+        @if ($errors->has('query'))
+            <div class="alert alert-danger">
+                {{ $errors->first('query') }}
+            </div>
+        @endif
         <main class="py-4">
             @yield('content')
         </main>

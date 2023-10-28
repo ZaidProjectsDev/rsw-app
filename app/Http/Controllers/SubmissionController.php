@@ -17,14 +17,23 @@ class SubmissionController extends Controller
      */
     public function index()
     {
-        if(Auth::user() == null)
-        {
-            return  view ('auth.login');
+        // Check if the user is authenticated
+        if (!Auth::check()) {
+            return view('auth.login');
         }
-        $submissions = Submission::all();
+
+        // Get the authenticated user's ID
+        $user_id = Auth::user()->id;
+
+        // Query the submissions that are visible to everyone or belong to the authenticated user
+        $submissions = Submission::where(function($query) use ($user_id) {
+            $query->where('visible', true)  // Visible to everyone
+            ->orWhere('user_id', $user_id);  // Belong to the authenticated user
+        })->get();
+
         $configurations = Configuration::all();
-        return view('submissions.index', compact('submissions', ));
-        //
+
+        return view('submissions.index', compact('submissions', 'configurations'));
     }
 
     /**
@@ -43,10 +52,17 @@ class SubmissionController extends Controller
 
 
         $configurations = Configuration::where('user_id','=',$user)->get();
+        if($configurations.count() <1)
+        {
 
-
-        $selected_configuration = Configuration::where('user_id','=',$user)->get()->first()->id;
-
+        }
+        try {
+            $selected_configuration = Configuration::where('user_id', '=', $user)->get()->first()->id;
+        }
+        catch (\ErrorException)
+        {
+            $selected_configuration = 0;
+        }
         $games= Game::all();
         $selected_game = $games->first()->id;
 
@@ -74,7 +90,7 @@ class SubmissionController extends Controller
         ]);
 
         $user_id = Auth::user()->id;
-        $request->request->add(['user_id'=>$user_id]);
+        $request->request->add(['user_id'=>$user_id ]);
 
         Submission::create($request->all());
 
