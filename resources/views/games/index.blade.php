@@ -14,9 +14,11 @@
                             </div>
                         @endif
                         @forelse($games as $game)
-                            <div class="col-md-6 col-xl-4 card w-auto">
-                                <h2>{{ $game->title}}</h2>
-                            </div>
+                                <div class="col-md-6 col-xl-4 card w-auto">
+                                    <a href="{{ route('games.show', ['id' => $game]) }}">
+                                        <h2>{{ $game->title }}</h2>
+                                    </a>
+                                </div>
 
                         @empty
                             <div class="col-md-6 col-xl-4 card w-auto">

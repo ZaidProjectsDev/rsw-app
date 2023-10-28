@@ -41,12 +41,13 @@ Route::middleware(['web', 'auth'])->group(function () {
 
     // Define routes that don't require 'auth' middleware
     Route::get('/search', [SearchController::class, 'search'])->name('search');
-
+    Route::resource('/games', \App\Http\Controllers\GameController::class);
+    Route::resource('/submissions', \App\Http\Controllers\SubmissionController::class);
+    Route::resource('parts', \App\Http\Controllers\PartController::class);
     // Example: Apply the 'recordViewedPage' middleware to specific routes
     Route::middleware('auth')->group(function () {
-        Route::resource('/games', \App\Http\Controllers\GameController::class)->middleware('recordViewedPage:game');
-        Route::resource('/submissions', \App\Http\Controllers\SubmissionController::class)->middleware('recordViewedPage:submission');
-        Route::resource('parts', \App\Http\Controllers\PartController::class)->middleware('recordViewedPage:part');
+        Route::get('/games/{id}',  [App\Http\Controllers\GameController::class, 'show'])->name('games.show')->middleware('recordViewedPage:game');
+
     });
 
     Route::post('/submissions/status/{id}', [App\Http\Controllers\SubmissionController::class, 'update'])->name('submissions.status');

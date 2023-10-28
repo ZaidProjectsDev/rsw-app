@@ -22,7 +22,7 @@ class GameController extends Controller
      */
     public function create()
     {
-        //
+        return view('games.create');
     }
 
     /**
@@ -30,16 +30,36 @@ class GameController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // Validate the incoming request data
+        $request->validate([
+            'title' => 'required|max:255',
+            'release_date' => 'required|date',
+            'publisher' => 'required|max:255',
+            'developer' => 'required|max:255',
+        ]);
+
+        // Create a new game record in the database
+        $game = new Game([
+            'title' => $request->input('title'),
+            'release_date' => $request->input('release_date'),
+            'publisher' => $request->input('publisher'),
+            'developer' => $request->input('developer'),
+        ]);
+
+        $game->save();
+
+        // Redirect to a success page or any other action
+        return redirect()->route('games.index')->with('success', 'Game created successfully.');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Game $game)
+    public function show($id)
     {
-        $games = Game::findMany($game);
-        return view('games.index', compact('games'));
+        $game = Game::where('id' ,'=', $id)->first();
+
+        return view('games.show', compact('game'));
         //
     }
 

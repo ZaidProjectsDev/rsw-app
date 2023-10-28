@@ -17,14 +17,14 @@ class RecordViewedPage
 
         if ($user) {
             $routeName = $request->route()->getName();
-
-            // Check if the route name matches routes you want to record
-            if (in_array($routeName, ['games.show', 'submissions.show', 'parts.show'])) {
-                ViewingHistory::create([
-                    'user_id' => $user->id,
-                    'viewed_model' => $routeName, // Store the route name
-                    'viewed_id' => $request->route('id'), // Adjust this based on your route parameters
-                ]);
+            if($request->route('id')!=null) {
+                if (in_array($routeName, ['games.show', 'submissions.show', 'parts.show'])) {
+                    ViewingHistory::create([
+                        'user_id' => $user->id,
+                        'viewed_model' => $routeName,
+                        'viewed_id' => $request->route('id'),
+                    ]);
+                }
             }
         }
 

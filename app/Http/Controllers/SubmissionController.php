@@ -107,7 +107,11 @@ class SubmissionController extends Controller
     public function show(string $id)
     {
         //This might be not to standard, find a better solution later in polishing phase.
-        $submission = Submission::where('id', '=',$id)->get()[0];
+        $submission = Submission::where('id', '=', $id)->first();
+         if($submission == null)
+         {
+             return back();
+         }
         return view ('submissions.show', compact('submission'));
         //
     }
