@@ -82,7 +82,7 @@ class SubmissionController extends Controller
      */
     public function show(string $id)
     {
-        //This might be not to standard, find a better solution later in polishing phase.
+        //Should get the right submission
         $submission = Submission::where('id', '=', $id)->first();
          if($submission == null)
          {
@@ -97,21 +97,36 @@ class SubmissionController extends Controller
      */
     public function edit(string $id)
     {
+        // Check if the user is authenticated
+        if (!Auth::check()) {
+            return redirect()->route('login');
+        }
+
+
         $submission = Submission::find($id);
+
+
+        if (!$submission) {
+            return redirect()->route('home');
+        }
+
+
+        if ($submission->user_id !== Auth::user()->id) {
+            return redirect()->route('home')->with('error', "Oops! You weren't supposed to be there!");
+        }
+
         $configurations = Configuration::where('id', $submission->configuration_id)->get();
         $selected_configuration = $submission->configuration_id;
         $games = Game::all();
         $selected_game = $submission->gameId;
-        if(!$submission)
-        {
-            return view('home');
-        }
-       return View::make('submissions.edit')->with('submission',$submission)
-           ->with('configurations',$configurations)
-           ->with('selected_configuration', $selected_configuration)
-        ->with('games', $games)
-        ->with('selected_game', $selected_game);
-        //
+
+        return view('submissions.edit', [
+            'submission' => $submission,
+            'configurations' => $configurations,
+            'selected_configuration' => $selected_configuration,
+            'games' => $games,
+            'selected_game' => $selected_game,
+        ]);
     }
 
     /**

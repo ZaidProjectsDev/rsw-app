@@ -104,7 +104,7 @@ class DatabaseSeeder extends Seeder
             ['name'=>'Low End Skyrim',
                 'user_id' => '1',
                 'game_id' => '3',
-                'configuration_id'=> Configuration::inRandomOrder()->first()->id,
+                'configuration_id'=> 1,
                 'description' => 'Test',
                 'visible' => '1']
         );

@@ -30,15 +30,21 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
+                        @if(Auth::user()!=null)
+                        @if(!Auth::user()->quarantined)
+
                         <form action="{{ route('search') }}" method="GET">
                             @csrf
                             <div class="input-group">
                                 <input type="text" class="form-control" name="query" placeholder="Search...">
                                 <div class="input-group-append">
+                                    @csrf
                                     <button class="btn btn-primary" type="submit">Search</button>
                                 </div>
                             </div>
                         </form>
+                        @endif
+                        @endif
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -57,7 +63,8 @@
                                 </li>
                             @endif
                         @else
-
+                            @if(Auth::user()->quarantined)
+                            @else
 
                             <!-- Games Dropdown -->
                             <li class="nav-item dropdown">
@@ -74,7 +81,7 @@
 
                             <!-- Submissions Dropdown -->
                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" role a button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <a class="nav-link dropdown-toggle" href="#" role a button data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 {{ __('Submissions') }}
                                 </a>
 
@@ -110,9 +117,9 @@
                                 </div>
                             </li>
 
-
-                        @if(auth::user()->roles->id == 2)
-                                <a class="nav-link" href="{{ route('configurations.index')}}">{{ __('Manage Users') }}</a>
+@endif
+                        @if(Auth::user()->roles->id == 2)
+                                <a class="nav-link" href="{{ route('admin.users.index')}}">{{ __('Manage Users') }}</a>
                             @endif
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>

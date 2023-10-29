@@ -13,48 +13,11 @@
                             {{ session('status') }}
                         </div>
                     @endif
-
+                    @if(Auth::user()->quarantined)
+                            {{ __('Your account has been temporarily quarantined for suspicious activity.') }}
+                        @else
                     {{ __('You are logged in!') }}
-
-{{--
-
-                        @forelse($submissions as $sub)
-                            <div class="col-md-6 col-xl-4 card w-auto">
-                                <h2>{{ $sub->name}}
-                                </h2>
-                                <h3>Vendor:
-                                    <span>{{ $sub->game->title}}</span>
-                                </h3>
-                                <h3>Hardware Type:</h3>
-
-                                    <span>{{$sub->configuration->name}}</span>
-
-
-                                    @forelse($sub->configuration->parts as $part)
-                                    <div class="col-md-8 col-xl-8 card">
-                                        <li>Model :{{$part->name}} </li>
-                                        <li>Vendor: {{$part->vendor->name}} </li>
-                                        @if($part->type->name === "CPU")
-                                        <li>Type : {{ $part->type->name}} </li>
-                                    </div>
-                                     @endif
-                                    @empty
-                                        <div class="col-md-6 col-xl-4 card w-auto">
-                                            <span>There's nothing to see here. </span>
-                                        </div>
-                                    @endforelse
-                                <a class="btn-link col-md-6 col-xl-4 card w-auto" href="{{ url('/') }}">View</a>
-                                @if (Auth::user()->id === $sub->user->id)
-                                    <a class="btn-link col-md-6 col-xl-4 card w-auto" href="{{ url('/') }}">Edit</a>
-                                @endif
-                            </div>
-
-                        @empty
-                            <div class="col-md-6 col-xl-4 card w-auto">
-                                <span>There's nothing to see here. </span>
-                            </div>
-                        @endforelse
-                        --}}
+                        @endif
                 </div>
             </div>
         </div>

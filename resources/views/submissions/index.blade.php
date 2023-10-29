@@ -39,8 +39,8 @@
                                             <span>There's nothing to see here. </span>
                                         </div>
                                     @endforelse
-                                    <a class="btn-link col-md-6 col-xl-4 card w-auto" href="{{ url('/') }}">View</a>
-                                    @if (Auth::user()->id === $sub->user->id)
+                                    <a class="btn-link col-md-6 col-xl-4 card w-auto" href="{{ route('submissions.show', ['submission' => $sub]) }}">View</a>
+                                @if (Auth::user()->id == $sub->user->id)
                                         <a class="btn-link col-md-6 col-xl-4 card w-auto" href="{{ route('submissions.edit',$sub->id) }}">Edit</a>
                                     @endif
                                 </div>

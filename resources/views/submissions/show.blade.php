@@ -24,7 +24,7 @@
                                 <p>Game : {{$submission->game->title}}</p>
                                 <p>Rig :{{$submission->configuration->name}}</p>
                                 <div class="col-md-3 col-xl-3 card w-50">
-                                    <p>CPU:{{$submission->configuration->parts}}</p>
+                                    <p>CPU:{{$submission->configuration->cpu}}</p>
                                 </div>
                             </div>
 

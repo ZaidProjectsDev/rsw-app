@@ -108,7 +108,7 @@
                                 <div class="col-xs-12 col-sm-12 col-md-12">
                                     <div class="form-group">
                                         <strong>Name:</strong>
-                                        <input type="text" name="name" class="form-control" placeholder="{{ auth::user()->name }}'s {{ $submission->game->title }} Settings Submission" value="{{ $submission->name }}">
+                                        <input type="text" name="name" class="form-control" placeholder="{{ Auth::user()->name }}'s {{ $submission->game->title }} Settings Submission" value="{{ $submission->name }}">
                                     </div>
                                 </div>
 

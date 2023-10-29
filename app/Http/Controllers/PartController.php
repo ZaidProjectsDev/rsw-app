@@ -69,4 +69,5 @@ class PartController extends Controller
     {
         //
     }
+
 }

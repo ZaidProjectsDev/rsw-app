@@ -2,6 +2,7 @@
 
 @section('content')
     <div class="container">
+        @csrf
         <h1>Search Results</h1>
         @if(count($games)>0)
         <h2>Games</h2>
